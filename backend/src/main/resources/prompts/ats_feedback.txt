@@ -1,0 +1,20 @@
+Act as an ATS and a senior recruiter. Evaluate how well the resume matches the job description.
+
+A deterministic keyword scan found these job keywords missing from the resume: {{missingKeywords}}
+
+Return JSON:
+{
+  "overallScore": 0-100 integer (overall fit for this role),
+  "sectionScores": {"summary": 0-100, "skills": 0-100, "experience": 0-100, "projects": 0-100, "formatting": 0-100},
+  "verdict": "one sentence verdict",
+  "strengths": ["3-5 specific strengths relative to the job"],
+  "improvements": ["4-6 specific, actionable improvements; mention which missing keywords to add only if the candidate plausibly has that skill"]
+}
+
+<resume>
+{{resumeJson}}
+</resume>
+
+<job_description>
+{{jobDescription}}
+</job_description>

@@ -1,0 +1,4 @@
+The text below was supposed to be a single valid JSON object but it is malformed or truncated.
+Fix it and return ONLY the corrected JSON object. Preserve all content; close any unterminated strings, arrays or objects.
+
+{{broken}}

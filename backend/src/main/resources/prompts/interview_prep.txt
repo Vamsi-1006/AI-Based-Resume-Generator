@@ -1,0 +1,18 @@
+Prepare the candidate for an interview for this job, using their resume.
+
+Return JSON:
+{
+  "questions": [
+    {"question": "", "category": "Technical | Behavioral | Project deep-dive | Role fit", "whyAsked": "what the interviewer is assessing", "answerTips": "how THIS candidate should answer, citing specific items from their resume"}
+  ],
+  "skillGaps": ["skills the job wants that the resume does not show, with a one-line study tip each"]
+}
+Produce 8 questions: 3 Technical, 2 Behavioral, 2 Project deep-dive, 1 Role fit.
+
+<resume>
+{{resumeJson}}
+</resume>
+
+<job_description>
+{{jobDescription}}
+</job_description>

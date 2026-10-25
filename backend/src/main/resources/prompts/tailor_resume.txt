@@ -1,0 +1,20 @@
+Tailor the resume below for the job description. Goals: maximise relevance and ATS keyword coverage while staying 100% truthful.
+
+Rules:
+- Keep every employer, title, date, degree and project exactly as given. Do NOT add experience, tools or certifications the candidate does not have.
+- You MAY: rewrite the summary for this role, reorder skills by relevance, rephrase bullets to mirror the job's terminology, reorder projects, and surface relevant skills that are already evidenced in the resume.
+- Keep the same JSON structure as the input resume.
+
+Return JSON:
+{
+  "resume": { ...the full tailored resume, same shape as input... },
+  "changes": ["short description of each meaningful change and why"]
+}
+
+<resume>
+{{resumeJson}}
+</resume>
+
+<job_description>
+{{jobDescription}}
+</job_description>

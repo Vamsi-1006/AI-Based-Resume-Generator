@@ -1,0 +1,25 @@
+Create a professional resume from the description below. Today's date is {{today}}.
+
+Return a JSON object with EXACTLY this shape (all values are strings unless shown as a list):
+{
+  "personalInformation": {"fullName": "", "email": "", "phoneNumber": "", "location": "", "linkedIn": "", "gitHub": "", "portfolio": ""},
+  "summary": "2-4 sentence professional summary tailored to the person's target role",
+  "skills": [{"title": "skill name", "level": "Beginner | Intermediate | Advanced | Expert"}],
+  "experience": [{"jobTitle": "", "company": "", "location": "", "duration": "e.g. Jan 2022 - Present", "responsibility": "- bullet one\n- bullet two\n- bullet three"}],
+  "education": [{"degree": "", "university": "", "location": "", "graduationYear": ""}],
+  "certifications": [{"title": "", "issuingOrganization": "", "year": ""}],
+  "projects": [{"title": "", "description": "1-2 sentences on problem, approach and outcome", "technologiesUsed": "comma separated", "githubLink": ""}],
+  "achievements": [{"title": "", "year": "", "extraInformation": ""}],
+  "languages": [{"name": ""}],
+  "interests": [{"name": ""}]
+}
+
+Guidance:
+- "responsibility" must be 3-5 bullet lines separated by "\n", each starting with "- ".
+- Group closely related skills; list the most relevant 8-15 skills.
+- Infer a reasonable skill level from years of experience, otherwise use "Intermediate".
+- Omit sections that have no information by returning an empty list.
+
+<user_input>
+{{userDescription}}
+</user_input>

@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+/* blinking caret for streaming text */
+.stream-caret::after {
+  content: "▍";
+  margin-left: 2px;
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink { to { visibility: hidden; } }
+
+/* resume paper */
+.resume-paper { width: 100%; max-width: 820px; min-height: 1060px; }
+
+@media print {
+  @page { size: A4; margin: 12mm; }
+  .resume-paper { box-shadow: none !important; max-width: none; min-height: 0; }
+  .no-print { display: none !important; }
+}

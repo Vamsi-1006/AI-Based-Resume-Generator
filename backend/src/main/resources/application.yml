@@ -1,0 +1,115 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: ai-resume-backend
+  # Loads backend/.env (KEY=VALUE lines) if present - no extra library needed.
+  config:
+    import: optional:file:.env[.properties]
+  mvc:
+    async:
+      request-timeout: 180000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+app:
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+  rate-limit:
+    requests-per-minute: ${RATE_LIMIT_RPM:20}
+  cache:
+    ttl-minutes: 30
+    max-entries: 200
+
+# ---------------------------------------------------------------------------
+# LLM providers. Add a new provider by adding a block here - no code change
+# needed for any OpenAI-compatible API (type: openai).
+# ---------------------------------------------------------------------------
+llm:
+  default-provider: ${LLM_PROVIDER:groq}
+  fallback-order: ${LLM_FALLBACK:groq,groq-fast,gemini,openrouter,xai,openai,anthropic,ollama}
+  max-retries: 1
+  providers:
+    groq:
+      type: openai
+      display-name: Groq - GPT-OSS 120B
+      base-url: https://api.groq.com/openai/v1
+      api-key: ${GROQ_API_KEY:}
+      model: ${GROQ_MODEL:openai/gpt-oss-120b}
+      temperature: 0.3
+      max-tokens: 4096
+      json-mode: true
+      extra-params:
+        "[reasoning_effort]": low
+    groq-fast:
+      type: openai
+      display-name: Groq - GPT-OSS 20B (fast)
+      base-url: https://api.groq.com/openai/v1
+      api-key: ${GROQ_API_KEY:}
+      model: ${GROQ_FAST_MODEL:openai/gpt-oss-20b}
+      temperature: 0.3
+      max-tokens: 4096
+      json-mode: true
+      extra-params:
+        "[reasoning_effort]": low
+    gemini:
+      type: openai
+      display-name: Google Gemini
+      base-url: https://generativelanguage.googleapis.com/v1beta/openai
+      api-key: ${GEMINI_API_KEY:}
+      model: ${GEMINI_MODEL:gemini-2.5-flash}
+      temperature: 0.3
+      max-tokens: 4096
+      json-mode: true
+    openrouter:
+      type: openai
+      display-name: OpenRouter
+      base-url: https://openrouter.ai/api/v1
+      api-key: ${OPENROUTER_API_KEY:}
+      model: ${OPENROUTER_MODEL:openai/gpt-oss-20b:free}
+      temperature: 0.3
+      max-tokens: 4096
+      json-mode: false
+    xai:
+      type: openai
+      display-name: xAI Grok
+      base-url: https://api.x.ai/v1
+      api-key: ${XAI_API_KEY:}
+      model: ${XAI_MODEL:grok-3-mini}
+      temperature: 0.3
+      max-tokens: 4096
+      json-mode: true
+    openai:
+      type: openai
+      display-name: OpenAI
+      base-url: https://api.openai.com/v1
+      api-key: ${OPENAI_API_KEY:}
+      model: ${OPENAI_MODEL:gpt-4o-mini}
+      temperature: 0.3
+      max-tokens: 4096
+      json-mode: true
+    anthropic:
+      type: anthropic
+      display-name: Anthropic Claude
+      base-url: https://api.anthropic.com/v1
+      api-key: ${ANTHROPIC_API_KEY:}
+      model: ${ANTHROPIC_MODEL:claude-3-5-haiku-latest}
+      temperature: 0.3
+      max-tokens: 4096
+    ollama:
+      type: openai
+      display-name: Ollama (local)
+      enabled: ${OLLAMA_ENABLED:false}
+      requires-api-key: false
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434/v1}
+      api-key: ollama
+      model: ${OLLAMA_MODEL:phi3}
+      temperature: 0.3
+      max-tokens: 4096
+      json-mode: true
+      timeout-seconds: 180

@@ -1,0 +1,13 @@
+Improve the following resume "{{section}}" content. Target role: {{targetRole}}.
+
+Rules:
+- Keep all facts; do not invent numbers. Where a metric would help but is unknown, use a placeholder like [X%] so the user can fill it in.
+- Use strong action verbs and concise, ATS-friendly wording.
+- If the input is bullet points, return bullet points (one per line, each starting with "- "). Otherwise return a short paragraph.
+
+Return JSON:
+{"improved": "the improved text", "tips": ["1-3 short tips explaining what changed"]}
+
+<user_input>
+{{text}}
+</user_input>

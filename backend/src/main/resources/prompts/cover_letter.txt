@@ -1,0 +1,16 @@
+Write a cover letter for the candidate below applying to {{companyName}}. Address it to {{hiringManager}}. Tone: {{tone}}. Date: {{today}}.
+
+Requirements:
+- 250-350 words, 3-4 short paragraphs, plain text only (no markdown, no placeholders like [Your Name]).
+- Opening: the role and a specific hook connecting the candidate to the job.
+- Middle: 2-3 concrete achievements from the resume that map to the job's key requirements.
+- Closing: enthusiasm + call to action. Sign off with the candidate's full name.
+- Only use facts from the resume.
+
+<resume>
+{{resumeJson}}
+</resume>
+
+<job_description>
+{{jobDescription}}
+</job_description>
